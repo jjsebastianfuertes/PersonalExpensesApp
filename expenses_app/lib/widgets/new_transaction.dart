@@ -34,8 +34,7 @@ class _NewTransactionState extends State<NewTransaction> {
               width: double.infinity,
               child: FlatButton(
                   child: Text('Add transaction'),
-                  color: Colors.blue,
-                  textColor: Colors.white,
+                  color: Theme.of(context).primaryColor,
                   onPressed: () {
                     widget.addTx(
                       titleController.text,

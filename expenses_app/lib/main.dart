@@ -23,7 +23,11 @@ class MyApp extends StatelessWidget {
         const Locale('en'), // English
         const Locale('es'), // Spanish
       ],
-      title: 'Expenses App',
+      title: 'Personal Expenses App',
+      theme: ThemeData(
+        primarySwatch: Colors.orange,
+        accentColor: Colors.amber,
+      ),
       home: MyHomePage(),
     );
   }
@@ -61,21 +65,25 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expenses App'),
+        title: Text('Personal Expenses App'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+              padding: EdgeInsets.symmetric(vertical: 7, horizontal: 5),
               width: double.infinity,
               child: Card(
-                color: Colors.black54,
+                color: Theme.of(context).primaryColor,
                 child: Center(
-                  child: Text(
-                    'Transactions',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Transactions',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ),
