@@ -1,9 +1,11 @@
+import 'package:expenses_app/widgets/chart.dart';
 import 'package:expenses_app/widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import './widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
 import './models/transaction.dart';
+import './widgets/chart.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,6 +61,16 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [];
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((tx) {
+      return tx.date.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
         title: txTitle,
@@ -106,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            TransactionList(_userTransactions)
+            Chart(_recentTransactions),
+            TransactionList(_userTransactions),
           ],
         ),
       ),
