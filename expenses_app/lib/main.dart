@@ -27,6 +27,24 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
         accentColor: Colors.amber,
+        fontFamily: 'Volkhov',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              title: TextStyle(
+                  fontFamily: 'Volkhov',
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+              subtitle: TextStyle(
+                fontFamily: 'Volkhov',
+                fontSize: 12,
+              ),
+            ),
+        appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                title: TextStyle(
+                    fontFamily: 'Volkhov',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold))),
       ),
       home: MyHomePage(),
     );

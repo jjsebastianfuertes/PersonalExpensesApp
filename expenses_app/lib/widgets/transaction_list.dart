@@ -38,14 +38,11 @@ class TransactionList extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          transactions[index].title,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15),
-                        ),
+                        Text(transactions[index].title,
+                            style: Theme.of(context).textTheme.title),
                         Text(
                           DateFormat.yMMMMd().format(transactions[index].date),
-                          style: TextStyle(color: Colors.blueGrey),
+                          style: Theme.of(context).textTheme.subtitle,
                         )
                       ],
                     ),
