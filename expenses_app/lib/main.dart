@@ -37,7 +37,6 @@ class MyApp extends StatelessWidget {
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
               subtitle: TextStyle(
-                fontFamily: 'Volkhov',
                 fontSize: 12,
               ),
             ),
@@ -71,11 +70,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
         title: txTitle,
         amount: txAmount,
-        date: DateTime.now(),
+        date: chosenDate,
         id: DateTime.now().toString());
     setState(() {
       _userTransactions.add(newTx);
@@ -91,6 +91,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+              padding: EdgeInsets.only(top: 7, right: 5, left: 5),
               width: double.infinity,
               child: Card(
                 color: Theme.of(context).primaryColor,
@@ -119,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             Chart(_recentTransactions),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),
